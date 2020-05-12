@@ -1,0 +1,12 @@
+<ng-container *ngIf="(payment$ | async) as payment; else loading">
+
+    <h1>{{ payment.paymentDesciption }}</h1>
+    <div>{{ payment.paymentAmount }}</div>
+    <ul>
+      <li>{{ payment.paymentId }}</li>
+      <li>{{ payment.paymentDate }}</li>
+    </ul>
+  
+  </ng-container>
+  <ng-template #loading>Loading…</ng-template>
+  

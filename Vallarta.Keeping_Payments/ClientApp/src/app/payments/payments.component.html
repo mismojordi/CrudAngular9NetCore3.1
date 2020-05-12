@@ -1,0 +1,30 @@
+<h1>Payments</h1>
+
+<p *ngIf="!(payments$ | async)"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New Payment</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="(payments$ | async)?.length>0">
+  <thead>
+    <tr>
+      <th>#</th>      
+      <th>Description</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let payment of (payments$ | async)">
+      <td>{{ payment.paymentId }}</td>
+      <td><a [routerLink]="['/payment/', payment.paymentId]">{{ payment.paymentDesciption }}</a></td>
+      <td>{{ payment.paymentDate | date: "yyyy-MM-dd" }}</td>
+      <td>{{ payment.paymentAmount }}</td>     
+      <td><a [routerLink]="['/payment/edit/', payment.paymentId]" class="btn btn-primary btn-sm float-right">Edit</a>
+     
+    <!--  <td><a [routerLink]="" (click)="delete(payment.PaymentId)" class="btn btn-danger btn-sm float-right">Delete</a></td> -->
+    </tr>
+  </tbody>
+</table>
